@@ -1,0 +1,10 @@
+.env
+kaggle.json
+*.jpg
+frames/
+filtered_frames/
+audio/
+dj_sets_videos/
+emonext_best.keras
+best_model.keras
+best_model_3class.keras
