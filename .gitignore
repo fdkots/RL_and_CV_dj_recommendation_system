@@ -8,4 +8,21 @@ dj_sets_videos/
 emonext_best.keras
 best_model.keras
 best_model_3class.keras
-data/images
+data/images# Large data files
+dj_sets_videos/
+audio/
+frames/
+filtered_frames/
+data/
+all_facial_metrics.jsonl
+haarcascade_frontalface_default.xml
+
+# Model files
+*.keras
+
+# Secrets
+kaggle.json
+.env
+
+# Large outputs
+rewards.csv
