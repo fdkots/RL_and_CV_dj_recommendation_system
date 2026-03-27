@@ -21,11 +21,11 @@ class DJEnvironment:
 
     def __init__(self, track_df: pd.DataFrame, result_df: pd.DataFrame, max_steps: int = 20):
         # Merge sentiment reward into tracks
-        sentiment = result_df[['song', 'reward', 'pct_Positive', 'pct_Neutral', 'pct_Negative']]
+        sentiment = result_df[['song', 'reward', 'pct_Positive', 'pct_Neutral', 'pct_Negative', 'avg_motion_energy']]
         merged = track_df.merge(sentiment, on='song', how='left')
         merged['reward'] = merged['reward'].fillna(0.0)  # songs with no crowd data = 0 reward
         
-        self.tracks    = merged[["song", "dj"] + self.FEATURE_COLS + ['reward', 'pct_Positive', 'pct_Negative']].dropna(subset=self.FEATURE_COLS).reset_index(drop=True)
+        self.tracks = merged[["song", "dj"] + self.FEATURE_COLS + ['reward', 'pct_Positive', 'pct_Negative', 'avg_motion_energy']].dropna(subset=self.FEATURE_COLS).reset_index(drop=True)
         self.max_steps = max_steps
         self._normalize()
         self.current_idx = 0
@@ -72,7 +72,7 @@ class DJEnvironment:
         # Vision Metric 2: Physical Dancing (from Lucas-Kanade Optical Flow)
         # Normalize motion so massive spikes don't break the Q-learning targets
         # Assuming you calculated 'avg_motion_energy' in the previous step
-        r_motion = nxt.get("avg_motion_energy", 0)  
+        r_motion = nxt["avg_motion_energy"] 
         
         # (Optional) If motion absolute values are huge (e.g. 50.0), scale them down:
         r_motion_scaled = min(1.0, r_motion / 10.0) 
