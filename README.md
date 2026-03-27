@@ -190,3 +190,7 @@ Decision-making → RL
 │ recommended next track     │
 │ or next BPM / vibe bucket  │
 └────────────────────────────┘
+
+
+Awesome, now unto the next step. 
+Getting Facial Recognition Metrics based on sentiment analysis of the crowd. 
