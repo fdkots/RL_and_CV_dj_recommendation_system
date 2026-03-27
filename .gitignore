@@ -16,6 +16,7 @@ filtered_frames/
 data/
 all_facial_metrics.jsonl
 haarcascade_frontalface_default.xml
+__pycache__/
 
 # Model files
 *.keras
