@@ -52,7 +52,7 @@ class DJEnvironment:
         nxt      = self.tracks.iloc[action]
         progress = self.step_count / self.max_steps
 
-        # --- 1. Audio Flow Rewards (The DJ Rules) ---
+        #  1. Audio Flow Rewards (The DJ Rules) 
         # The agent needs to follow the classic "DJ Energy Curve" (warmup -> peak -> cooldown)
         ideal_energy = np.exp(-0.5 * ((progress - 0.7) / 0.2) ** 2)
         r_energy = np.exp(-5.0 * (nxt["energy_norm"] - ideal_energy) ** 2)
@@ -63,7 +63,7 @@ class DJEnvironment:
         # Base danceability of the track itself
         r_dance = nxt["danceability_norm"]
 
-        # --- 2. Multi-Modal Vision Rewards (The Crowd Feedback!) ---
+        #  2. Multi-Modal Vision Rewards
         
         # Vision Metric 1: Facial Sentiment (from EMONEXT/DeepFace)
         # Did the crowd look happy or bored during this track? Range: [-1, 1]
@@ -77,7 +77,7 @@ class DJEnvironment:
         # (Optional) If motion absolute values are huge (e.g. 50.0), scale them down:
         r_motion_scaled = min(1.0, r_motion / 10.0) 
 
-        # --- Final Weighted Reward Combination ---
+        #  Final Weighted Reward Combination 
         # As the night goes on, crowd reaction matters MORE than the audio rules!
         w_energy    = 1.0
         w_bpm       = 0.5
