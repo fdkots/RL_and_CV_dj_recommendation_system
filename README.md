@@ -75,4 +75,4 @@ graph TD
 ## 🛠️ Tech Stack
 *   **Computer Vision:** `OpenCV`, `NumPy`
 *   **Data Processing:** `Pandas`, `Matplotlib`
-*   **Decision Making:** Standard Python RL implementations
+*   **Decision Making:** Standard feature selection for the CV module and Python RL implementations
